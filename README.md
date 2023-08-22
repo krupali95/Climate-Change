@@ -44,3 +44,8 @@ This study amplifies the significance of precise weather and temperature predict
  Amidst the escalating air temperatures and climate shifts attributed to Jakarta's urbanization-driven reduction in green spaces, this study unfurls. It crafts precise air temperature prediction models wielding Long Short-Term Memory (LSTM) and Prophet, tailor-made for stochastic air temperature data. LSTM captures short-term patterns (RMSE: 0.31-0.69 for 2-48 hours), while Prophet excels in protracted forecasts (RMSE: 0.80-0.89 for 72-168 hours). Amidst Jakarta's dense populace and limited green cover, these models surmount the less adaptive Numerical Weather Prediction. While LSTM, a sophisticated Recurrent Neural Network, emboldens long-term information retention, Prophet, creation of Facebook, amalgamates trends, seasons, and holidays.[7]
 
 7.	Air Temperature Forecasting with Long Short-Term Memory and Prophet: A Case Study of Jakarta, Indonesia | IEEE Conference Publication | IEEE Xplore
+
+   
+Background:
+In this section, we provide an in-depth exploration of the methodologies employed in this study, their alignment with the research problem, and the theoretical foundations that underpin their usage. The methodologies encompass Random Forest Regressor, Linear Regression, hyperparameter tuning, and the utilization of the Facebook Prophet library for time series forecasting.
+
