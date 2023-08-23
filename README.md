@@ -45,9 +45,25 @@ This study amplifies the significance of precise weather and temperature predict
 
 7.	Air Temperature Forecasting with Long Short-Term Memory and Prophet: A Case Study of Jakarta, Indonesia | IEEE Conference Publication | IEEE Xplore
 
-   
 Background:
 In this section, we provide an in-depth exploration of the methodologies employed in this study, their alignment with the research problem, and the theoretical foundations that underpin their usage. The methodologies encompass Random Forest Regressor, Linear Regression, hyperparameter tuning, and the utilization of the Facebook Prophet library for time series forecasting.
+Regression Method:
+Regression analysis is a pivotal technique within the realm of data analysis, serving as a cornerstone for understanding relationships between variables and making predictions based on observed data. It is a versatile approach applicable across various domains, including economics, social sciences, healthcare, engineering, and weather forecasting [1].
+For temperature prediction, the selection of these two methods, the Random Forest Regressor and Linear Regression, is guided by specific considerations that align with the nature of the data and the research objectives. The rationale for opting for these methods can be further elaborated as follows:
+References:
+Montgomery, D. C., Peck, E. A., & Vining, G. G. (2012).
+**Random Forest Regressor:**
+The choice of the Random Forest Regressor stems from its ability to handle complex relationships within data and effectively manage intricate patterns. Given the intricate and potentially non-linear relationships inherent in temperature data, the ensemble nature of this method allows it to capture and combine insights from numerous decision trees, mitigating the risk of overfitting. Moreover, the Random Forest Regressor's adaptability to diverse domains makes it a suitable candidate for predicting temperature patterns across various contexts, such as climate modeling, environmental monitoring, and more.
+**References:**
+1. NumPy Ninja. (n.d.). Regression Algorithm Part 6: Random Forest Regression Using R Language. [Link](https://www.numpyninja.com/post/regression-algorithm-part-6-random-forest-regression-using-r-language)
+2. Serokell. (n.d.). Random Forest Classification. [Link](https://serokell.io/blog/random-forest-classification)
+3. Medium. (n.d.). Random Forest Regression. [Link](https://levelup.gitconnected.com/random-forest-regression-209c0f354c84)
+**Linear Regression:**
+The inclusion of Linear Regression is warranted by its simplicity and interpretability, attributes that can be advantageous when analyzing temperature prediction. While Linear Regression assumes linear relationships, it provides valuable insights into the direction and magnitude of associations between variables. In cases where temperature changes exhibit a linear trend, Linear Regression can offer a clear and concise representation of this trend. Additionally, Linear Regression's computational efficiency facilitates quick model development, making it a valuable tool in temperature prediction scenarios.
+**Reference:**
+[1] WallStreetMojo. (n.d.). Linear Regression Examples. [Link](https://www.wallstreetmojo.com/linear-regression-examples/)
+By combining the strengths of both methods, your research aims to harness the benefits of Random Forest Regressor's complexity handling and Linear Regression's straightforward interpretability to provide a comprehensive and accurate approach to temperature prediction. This tailored selection demonstrates a strategic approach to addressing the complexities of temperature forecasting while maintaining a practical and understandable framework.
+   
 
 Dataset: 
 This study's analysis was derived from the Met Office's comprehensive repository of historic station data, available through the public domain at https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data. This repository has proven invaluable for examining transformations in the UK's climate over the span of more than 150 years. The central objective of this endeavor was to uncover patterns within climate variations, with a specific focus on temperature fluctuations, across distinct temporal intervals. Significantly, the dataset in question encompasses meticulously archived historical climate records, an extensive collection amassed by the Met Office. The analysis specifically narrowed its scope to the Oxford region, considering monthly temperature metrics in degrees Celsius. This dataset encompasses a range from 1853 to July 2023 and encompasses pivotal variables including 'year,' 'month,' 'tmax,' 'tmin,' 'af' (indicating air frost recorded in each month), 'rainfall,' and 'sun.' Notably, the 'sun' column, deemed irrelevant to the analysis due to its limited informational value, was prudently excluded from the subsequent analytical processes.
