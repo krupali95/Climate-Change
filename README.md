@@ -75,3 +75,87 @@ For the initial regression analysis, a series of meticulous transformations were
 
 Transitioning to the time series modeling aspect, a distinctive approach emerged. This necessitated the inclusion of a 'day' column, as the input structure required by the Prophet framework invariably consists of two core columns: 'ds' (datestamp) and 'y' (numeric measurement for forecasting). Adhering to the expected Pandas format, 'ds' was converted into a datetime represenDateTimewherein the day component was consistently set to '01,' remaining congruent with the original dataset's month and year specifications. This coherent structure, exemplified as (01-01-1853, 01-02-1853, and so on), served as the bedrock for the subsequent phases of the modeling process.
 
+
+Methodology :
+
+ 
+DATA COLLECTION AND PREPROCESSING :
+we delve into the implementation and evaluation of the Regressor model for temperature prediction using the provided dataset. The primary goal is to harness the predictive capabilities of the Regressor algorithm to forecast maximum temperatures based on historical data spanning over 150 years. The dataset contains temperature records alongside year, month, and various meteorological parameters.
+The dataset consists of historical temperature records along with relevant features such as minimum temperature (tmin), rainfall, average temperature (tavg), and air frost (af). Let's denote the dataset as D, where each record is represented as a tuple (x_i, y_i), with x_i as the input feature vector and y_i as the target output. The feature vector x_i is composed of the features tmin, rainfall, tavg, and af, along with other temporal features. Mathematically:
+D={(x1,y1),(x2,y2),…,(xn,yn)}									(1)
+For the purpose of temperature prediction, the dataset is preprocessed to include the relevant features. Let
+ 	xi=[tmini,rainfalli,tavgi,afi] 									(2)				
+represent the feature vector for record i. The target variable is denoted as  tmaxi, which represents the maximum temperature for record i.
+To evaluate the model's performance, we split the dataset into training and testing subsets. Data from years before the split condition (2000) are used for training, while data from years after the split condition are reserved for testing. Specifically, records from 1853 to 2000 are used for training, and records from 2001 to the present are used for testing. This ensures that the model is evaluated on unseen data.
+Several regression models are considered for comparison in temperature prediction. These models are implemented using the scikit-learn library in Python. For each model, we train it on the training data and evaluate its performance using the coefficient of determination (R-squared) metric on the test data.
+Model Selection and Evaluation:
+
++--------------------+-------------+
+| Model              |   R-squared |
++====================+=============+
+| RF Regressor       |    0.980267 |
++--------------------+-------------+
+| Linear Regression  |    0.982422 |
++--------------------+-------------+
+| ElasticNet         |    0.966579 |
++--------------------+-------------+
+| GBoost Regressor   |    0.976652 |
++--------------------+-------------+
+| SVR                |    0.952136 |
++--------------------+-------------+
+| CatBoost Regressor |    0.980684 |
++--------------------+-------------+
+| Lasso Regression   |    0.966519 |
++--------------------+-------------+
+| Ridge Regression   |    0.982417 |
++--------------------+-------------+
+Table 1 the results of the model comparison based on 
+the R-squared values for different regression techniques.
+
+Table 1 presents the results of the model comparison based on the R-squared values for different regression techniques. The R-squared values indicate the proportion of variance in the dependent variable that is predictable from the independent variables. The models were evaluated using a comprehensive dataset and rigorous analysis. As shown in the table, the Linear Regression and Random Forest Regression models demonstrate the highest R-squared values, indicating their effectiveness in capturing the underlying relationships within the data. These results play a crucial role in guiding the selection of the most suitable regression model for accurate temperature predictions.
+
+4.2 Random Forest Regressor Model:
+we delve into the implementation and evaluation of the Random Forest Regressor model for temperature prediction using the provided dataset. The Random Forest Regressor, an ensemble learning algorithm, is particularly potent in capturing intricate relationships in data and delivering accurate predictions. It achieves this by combining the predictive power of multiple decision trees, a process that involves randomization during both tree construction and aggregation. in 2001, Breiman elucidates the algorithm's mechanics and highlights its effectiveness in improving prediction accuracy while mitigating overfitting. The idea of combining decision trees through aggregation to achieve enhanced predictive capabilities has since become a cornerstone of modern machine-learning practices.[ Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.]
+The Random Forest Regressor operates on the principle of ensemble learning, which is the practice of training multiple models and combining their predictions to achieve enhanced accuracy. In this context, the individual models are decision trees. A decision tree segments the input feature space into distinct regions, making decisions based on a series of feature-specific conditions. By integrating the outputs of multiple decision trees, the Random Forest Regressor addresses the shortcomings of a single decision tree and yields more robust predictions.
+[Liaw, A., & Wiener, M. (2002). Classification and Regression by randomForest. R News, 2(3), 18-22.]
+Randomized Search:
+The Random Forest Regressor's performance is further optimized through hyperparameter tuning. Hyperparameters are adjustable settings that govern the behavior of the model. In this context, we employ the technique of Randomized Search, a method introduced by James Bergstra and Yoshua Bengio 
+[Bergstra, J., & Bengio, Y. (2012). Random Search for Hyper-Parameter Optimization. Journal of Machine Learning Research, 13, 281-305. https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf]
+The prediction equation for a Random Forest Regressor is a bit more complex than that of a linear regression because it involves the aggregation of predictions from multiple decision trees. The general equation for predicting the target variable using a Random Forest Regressor can be written as follows:
+y^=N1∑i=1Nfi(x)		(5)
+According to temperture prediction related to project :
+For your temperature prediction,
+(tmin,tavg,rainfall,af)tmax^=N1∑i=1Nfi(tmin,tavg,rainfall,af)
+Where:
+•	^tmax^ is the predicted maximum temperature.
+•	N is the number of trees in the Random Forest ensemble.
+•	(tmin,tavg,rainfall,af)fi(tmin,tavg,rainfall,af) is the prediction made by the i-th decision tree based on the input features "tmin," "tavg," "rainfall," and "af."
+This equation captures the essence of how the Random Forest Regressor combines the outputs of individual decision trees to arrive at a prediction for the target variable "tmax."
+4.3 Linear Regression Model
+In this section, we delve into the implementation and evaluation of the Linear Regression model for temperature prediction using the provided dataset. Linear Regression is a foundational machine learning algorithm that models the relationship between a dependent variable and one or more independent variables. In the context of temperature prediction, we utilize Linear Regression to establish a predictive model that estimates maximum temperatures based on relevant meteorological parameters.
+the performance of the Linear Regression model through hyperparameter tuning using Randomized Search Cross-Validation. Hyperparameters play a crucial role in shaping the behavior of the model, and to find the best configuration, we perform a randomized search across a predefined grid of hyperparameters. The grid encompasses options such as including an intercept term, normalization, and feature copying. With a fixed random seed for reproducibility, we utilize the RandomizedSearchCV technique, creating an instance of Linear Regression, specifying the hyperparameter grid, and setting parameters for cross-validation folds and iterations. The model is then trained on the training data, and the best hyperparameters are identified.
+Bergstra, J., & Bengio, Y. (2012). Random Search for Hyper-Parameter Optimization. Journal of Machine Learning Research, 13, 281-305. https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf
+equation (1), shown below is used for building the prediction model for regression analysis of weather data.
+Y′=∝+β1X1+β2X2+⋯βnXn         (1)
+
+The Linear Regression model aims to predict the maximum temperature (tmax) based on selected input features including minimum temperature (tmin), average temperature (tavg), rainfall, and growing degree days (af). The model formulates predictions by establishing a linear equation that relates the input features to the target variable. Mathematically, the prediction equation can be represented as follows:
+tmax = α + β1 * tmin + β2 * tavg + β3 * rainfall + β4 * af
+Where:
+•	tmax is the predicted maximum temperature.
+•	tmin, tavg, rainfall, and af are the input features.
+•	α represents the intercept of the linear equation.
+•	β1, β2, β3, and β4 are the coefficients associated with each input feature.
+4.4 Prophet model:
+the equation that defines the Prophet model for time series forecasting in the context of your project. Which is developed by Facebook in 2017 [B. Vishwas and A. Patel, Hands-on Time Series Analysis with Python., Springer, 2020] The equation for the Prophet model is as follows:
+y(t)=g(t)+s(t)+h(t)+εt
+Where:
+•	y(t) represents the observed value at time t.
+•	g(t) is the trend component that captures the overall direction of the data over time.
+•	s(t) is the seasonal component that accounts for periodic patterns in the data.
+•	h(t) is the holiday component that captures irregular events and holidays.
+•	εt represents the error term that the model cannot account for.
+The equation outlines how the observed value at a specific time t is composed of the trend, seasonality, holiday effects, and the residual error.
+Additionally, for each of the components:
+•	g(t) is described by a specific model equation that considers growth rate (k), offset (m), and adjustment (x) parameters.
+•	s(t) is a sum of trigonometric terms that capture seasonal patterns with period (P).
+Overall, the Prophet model decomposes the time series data into these components to make accurate forecasts by considering trends, seasonal patterns, and holiday effects. This modeling approach is particularly useful when dealing with data affected by varying factors such as seasons, trends, outliers, and holidays.
